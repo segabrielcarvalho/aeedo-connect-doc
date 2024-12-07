@@ -1,0 +1,116 @@
+export const metadata = {
+  title: 'Órgãos',
+  description:
+    'Nesta página, exploraremos os diferentes endpoints de órgãos que você pode usar para gerenciá-los programaticamente, incluindo a criação, consulta e validação.',
+}
+
+# Órgãos
+
+Os órgãos são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre cada órgão registrado no sistema. Nesta página, exploraremos os diferentes endpoints relacionados aos órgãos que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar órgãos.
+
+## O modelo de órgãos
+
+O modelo de órgãos contém todas as informações sobre os órgãos cadastrados no sistema. Estas informações incluem o nome do órgão, o tipo do órgão e detalhes associados.
+
+### Propriedades
+
+| Nome                | Tipo       | Descrição                                    |
+|---------------------|------------|---------------------------------------------|
+| **name**            | string     | Nome do órgão.                              |
+| **organType**       | string     | Tipo do órgão.                              |
+
+---
+
+## POST Escolher Órgãos {{ tag: 'POST', label: '/organs/choose-organs' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atribuir ou desconectar órgãos de pacientes no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "organs": {
+        "connect": [
+          { "id": "9da22d1a-d2d6-476f-9005-d29d6dc46fcd" }
+        ],
+        "disconnect": [
+          { "id": "" }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "user": {
+          "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+          "patientId": null,
+          "name": "paciente 2",
+          "email": "paciente+2@gmail.com",
+          "role": "user",
+          "document": null,
+          "birthDate": null,
+          "isActive": true
+        },
+        "patientType": "donor",
+        "bloodType": "B+",
+        "organs": [
+          {
+            "name": "novo orgao",
+            "organType": "locomotor"
+          }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Este campo é obrigatório",
+      "errors": {
+        "organs": [
+          "Este campo é obrigatório"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Listar Órgãos de Pacientes {{ tag: 'GET', label: '/organs/patient-organs/' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite listar todos os órgãos atribuídos a um paciente no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "novo orgao",
+          "organType": "locomotor"
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>

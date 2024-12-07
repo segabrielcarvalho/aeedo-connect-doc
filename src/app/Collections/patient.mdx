@@ -1,0 +1,91 @@
+export const metadata = {
+  title: 'Patient',
+  description:
+    'Nesta página, exploraremos os diferentes endpoints de patient que você pode usar para gerenciá-los programaticamente, incluindo consulta, criação, atualização e validação.',
+}
+
+# Patient
+
+Os patient são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre os doadores e receptores registrados, incluindo detalhes pessoais, endereço e órgãos associados. Nesta página, exploraremos os diferentes endpoints relacionados aos patient que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar patient.
+
+## O modelo de patient
+
+O modelo de patient contém todas as informações sobre os patient cadastrados no sistema. Essas informações incluem dados do usuário, tipo de paciente, tipo sanguíneo, órgãos associados e endereço.
+
+### Propriedades
+
+| Nome               | Tipo    | Descrição                                |
+|---------------------|---------|------------------------------------------|
+| **id**             | string  | Identificador único do paciente.         |
+| **name**           | string  | Nome do paciente.                        |
+| **email**          | string  | E-mail do paciente.                      |
+| **role**           | string  | Função do paciente no sistema.           |
+| **patientType**    | string  | Tipo do paciente (doador/receptor).      |
+| **bloodType**      | string  | Tipo sanguíneo do paciente.              |
+| **organs**         | array   | Lista de órgãos associados ao paciente. |
+| **address**        | object  | Endereço do paciente.                    |
+| **hasOrgansSelected** | boolean | Indica se o paciente possui órgãos selecionados. |
+
+---
+
+## GET Detalhes do Paciente {{ tag: 'GET', label: '/patient-details/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um paciente específico.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "user": {
+          "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+          "name": "paciente 2",
+          "email": "paciente+2@gmail.com",
+          "role": "user",
+          "document": null,
+          "birthDate": null,
+          "isActive": true
+        },
+        "patient": {
+          "id": "9da47800-cde2-477d-b16d-016f6a6f3441",
+          "patientType": "donor",
+          "bloodType": "B+",
+          "organs": [
+            {
+              "name": "novo orgao",
+              "organType": "locomotor"
+            }
+          ]
+        },
+        "address": {
+          "zipCode": "53320465",
+          "street": "Rua da Esperança",
+          "neighbourhood": "Bultrins",
+          "state": "PE",
+          "city": "Teste",
+          "houseNumber": "555",
+          "complement": null
+        },
+        "hasOrgansSelected": true
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Usuário não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>

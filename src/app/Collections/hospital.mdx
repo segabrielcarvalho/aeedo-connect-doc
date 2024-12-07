@@ -1,0 +1,204 @@
+export const metadata = {
+  title: 'Hospitais',
+  description:
+    'Nesta página, exploraremos os diferentes endpoints de hospitais que você pode usar para gerenciá-los programaticamente, incluindo a criação, consulta e validação.',
+}
+
+# Hospitais
+
+Os hospitais são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre cada hospital registrado no sistema. Nesta página, exploraremos os diferentes endpoints relacionados aos hospitais que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar hospitais.
+
+## O modelo de hospitais
+
+O modelo de hospitais contém todas as informações sobre os hospitais cadastrados no sistema. Estas informações incluem o nome do hospital, telefone, email, CNPJ, status e endereço associado.
+
+### Propriedades
+
+| Nome                | Tipo       | Descrição                                    |
+|---------------------|------------|---------------------------------------------|
+| **name**            | string     | Nome do hospital.                           |
+| **phone**           | string     | Telefone de contato do hospital.            |
+| **email**           | string     | Email do hospital.                          |
+| **companyDocument** | string     | CNPJ do hospital.                           |
+| **status**          | boolean    | Indica se o hospital está ativo.            |
+| **address**         | object     | Informações de endereço associadas ao hospital.|
+
+---
+
+## POST Escolher Hospitais {{ tag: 'POST', label: '/hospitals/choose-hospitals' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atribuir ou desconectar hospitais de usuários no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "hospitals": {
+        "connect": [
+          { "id": "" }
+        ],
+        "disconnect": [
+          { "id": "9da1123b-4c68-4a86-a8f4-b6a3910274e5" }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "user": {
+          "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+          "patientId": null,
+          "name": "paciente 2",
+          "email": "paciente+2@gmail.com",
+          "role": "user",
+          "document": null,
+          "birthDate": null,
+          "isActive": true
+        },
+        "patientType": "donor",
+        "bloodType": "B+",
+        "hospitals": [
+          {
+            "name": "Santa casa 6",
+            "phone": "163333335",
+            "email": "santacasa6@gmail.com",
+            "companyDocument": "15224151000109",
+            "status": false
+          }
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Listar Hospitais {{ tag: 'GET', label: '/hospitals' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite listar todos os hospitais cadastrados no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "Santa casa",
+          "phone": "1637115612",
+          "email": "santacasa@gmail.com",
+          "companyDocument": "04827502000141",
+          "status": true,
+          "address": {
+            "zipCode": "13639-516",
+            "street": "Largo Walter Pacheco, 2",
+            "neighbourhood": "corrupti",
+            "state": "RR",
+            "city": "Vila Sophie",
+            "houseNumber": "255",
+            "complement": null
+          }
+        }
+      ],
+      "links": {
+        "first": "http://localhost/api/hospitals?page=1",
+        "last": "http://localhost/api/hospitals?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://localhost/api/hospitals",
+        "per_page": 10,
+        "to": 5,
+        "total": 5
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Detalhar Hospital {{ tag: 'GET', label: '/hospitals/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um hospital específico.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "hospital": {
+          "name": "Santa casa 6",
+          "phone": "163333335",
+          "email": "santacasa6@gmail.com",
+          "companyDocument": "15224151000109",
+          "status": false,
+          "address": {
+            "zipCode": "37009-168",
+            "street": "Travessa Malu Lovato, 8561",
+            "neighbourhood": "est",
+            "state": "PI",
+            "city": "São Danielle",
+            "houseNumber": "358",
+            "complement": "sed"
+          }
+        },
+        "donors": [
+          {
+            "id": "9da47800-cde2-477d-b16d-016f6a6f3441",
+            "name": "paciente 2",
+            "email": "paciente+2@gmail.com",
+            "isActive": null,
+            "patientType": "donor",
+            "bloodType": "B+",
+            "organs": [
+              {
+                "name": "novo orgao",
+                "organType": "locomotor"
+              }
+            ]
+          }
+        ],
+        "recipients": []
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Hospital não encontrado para visualização"
+    }
+    ```
+
+  </Col>
+</Row>

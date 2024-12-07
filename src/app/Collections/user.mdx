@@ -1,0 +1,211 @@
+export const metadata = {
+  title: 'User',
+  description:
+    'Nesta página, exploraremos os diferentes endpoints de user que você pode usar para gerenciá-los programaticamente, incluindo criação, consulta, atualização e validação.',
+}
+
+# User
+
+Os user são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre os pacientes, doadores e receptores registrados no sistema. Nesta página, exploraremos os diferentes endpoints relacionados aos user que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar user.
+
+## O modelo de user
+
+O modelo de user contém todas as informações sobre os usuários cadastrados no sistema. Essas informações incluem o nome, e-mail, função (role), tipo de paciente, tipo sanguíneo e órgãos associados.
+
+### Propriedades
+
+| Nome            | Tipo   | Descrição                           |
+|------------------|--------|-------------------------------------|
+| **name**        | string | Nome do usuário.                    |
+| **email**       | string | E-mail do usuário.                  |
+| **role**        | string | Função do usuário no sistema.       |
+| **patientType** | string | Tipo do paciente (doador/receptor). |
+| **bloodType**   | string | Tipo sanguíneo do paciente.         |
+
+---
+
+## POST Criar Usuário {{ tag: 'POST', label: '/users' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite criar um novo usuário no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "name": "paciente 6",
+      "email": "paciente+6@gmail.com",
+      "role": "user",
+      "password": "12345678",
+      "patient_type": "donor",
+      "blood_type": "AB+",
+      "organs": [
+        {"id": "5389f578-26c8-4374-80ba-62f7a43d9927"},
+        {"id": "46c7185b-7281-4cdc-9aba-5e7d187566fc"}
+      ]
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "paciente 3",
+        "email": "paciente+3@gmail.com",
+        "phone": null,
+        "document": null,
+        "role": "user",
+        "birthDate": null,
+        "patient": {
+          "patientType": "donor",
+          "bloodType": "AB+"
+        },
+        "organs": [
+          {
+            "name": "óvulos",
+            "organType": "reprodutor"
+          },
+          {
+            "name": "células-tronco",
+            "organType": "nervoso"
+          }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Este campo é obrigatório (and 4 more errors)",
+      "errors": {
+        "name": ["Este campo é obrigatório"],
+        "email": ["Valor já existente"],
+        "role": ["Role inválida para cadastro"],
+        "patient_type": ["O tipo de paciente selecionado é inválido."],
+        "blood_type": ["Tipo sanguíneo inválido."]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## PATCH Atualizar Usuário {{ tag: 'PATCH', label: '/users/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atualizar os dados de um usuário existente no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "name": "paciente 3 editado",
+      "blood_type": "O+"
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "paciente 3 editado",
+        "email": "paciente+3@gmail.com",
+        "phone": null,
+        "document": null,
+        "role": "user",
+        "birthDate": null,
+        "patient": {
+          "patientType": "donor",
+          "bloodType": "O+"
+        },
+        "organs": [
+          {
+            "name": "óvulos",
+            "organType": "reprodutor"
+          },
+          {
+            "name": "células-tronco",
+            "organType": "nervoso"
+          }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Usuário não encontrado",
+      "errors": {
+        "name": ["Este campo é obrigatório"],
+        "email": ["Valor inválido"],
+        "patient_type": ["Tipo de paciente inválido"],
+        "blood_type": ["Tipo sanguíneo inválido"]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Listar Usuários {{ tag: 'GET', label: '/users/?type=donor' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite listar todos os usuários com base em um tipo específico de paciente.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "paciente 2",
+          "email": "paciente+2@gmail.com",
+          "role": "user",
+          "organs": [
+            {
+              "name": "novo orgao",
+              "organType": "locomotor"
+            }
+          ]
+        },
+        {
+          "name": "paciente 3 editado",
+          "email": "paciente+3@gmail.com",
+          "role": "user",
+          "organs": [
+            {
+              "name": "óvulos",
+              "organType": "reprodutor"
+            },
+            {
+              "name": "células-tronco",
+              "organType": "nervoso"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>

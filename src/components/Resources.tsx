@@ -80,7 +80,106 @@ const resources: Array<Resource> = [
       squares: [[0, 1]],
     },
   },
+  // Páginas adicionais
+  {
+    href: '/auth',
+    name: 'Auth',
+    description: 'Learn how to authenticate users and manage access tokens.',
+    icon: UserIcon,
+    pattern: {
+      y: 14,
+      squares: [[0, 2]],
+    },
+  },
+  {
+    href: '/adminAddress',
+    name: 'AdminAddress',
+    description:
+      'Explore the admin address model and endpoints for managing addresses programmatically.',
+    icon: UsersIcon,
+    pattern: {
+      y: 18,
+      squares: [[1, 3]],
+    },
+  },
+  {
+    href: '/adminOrgan',
+    name: 'AdminOrgan',
+    description:
+      'Learn about the admin organ model and how to manage organs effectively.',
+    icon: UserIcon,
+    pattern: {
+      y: 20,
+      squares: [[0, 3]],
+    },
+  },
+  {
+    href: '/adminHospital',
+    name: 'AdminHospital',
+    description:
+      'Manage hospitals in the system using the admin hospital endpoints.',
+    icon: UsersIcon,
+    pattern: {
+      y: 22,
+      squares: [[1, 2]],
+    },
+  },
+  {
+    href: '/hospital',
+    name: 'Hospital',
+    description:
+      'Explore how to retrieve and manage hospital data programmatically.',
+    icon: EnvelopeIcon,
+    pattern: {
+      y: 16,
+      squares: [[0, 2]],
+    },
+  },
+  {
+    href: '/organ',
+    name: 'Organ',
+    description:
+      'Learn about organ details and how to interact with the organ model.',
+    icon: ChatBubbleIcon,
+    pattern: {
+      y: 14,
+      squares: [[1, 3]],
+    },
+  },
+  {
+    href: '/user',
+    name: 'User',
+    description:
+      'Manage user data including creation, retrieval, update, and deletion.',
+    icon: UserIcon,
+    pattern: {
+      y: 18,
+      squares: [[0, 1]],
+    },
+  },
+  {
+    href: '/patient',
+    name: 'Patient',
+    description: 'Explore patient details and manage their information.',
+    icon: UsersIcon,
+    pattern: {
+      y: 12,
+      squares: [[0, 2]],
+    },
+  },
+  {
+    href: '/address',
+    name: 'Address',
+    description:
+      'Learn about address models and how to manage addresses programmatically.',
+    icon: UserIcon,
+    pattern: {
+      y: 10,
+      squares: [[1, 3]],
+    },
+  },
 ]
+
 
 function ResourceIcon({ icon: Icon }: { icon: Resource['icon'] }) {
   return (

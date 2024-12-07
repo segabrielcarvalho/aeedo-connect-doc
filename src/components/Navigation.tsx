@@ -241,12 +241,23 @@ export const navigation: Array<NavGroup> = [
     ],
   },
   {
-    title: 'Resources',
+    title: 'Collections',
     links: [
       { title: 'Contacts', href: '/contacts' },
       { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },
       { title: 'Groups', href: '/groups' },
+
+      { title: 'Auth', href: '/auth' },
+      { title: 'AdminAddress', href: '/adminAddress' },
+      { title: 'AdminOrgan', href: '/adminOrgan' },
+      { title: 'AdminHospital', href: '/adminHospital' },
+      { title: 'Hospital', href: '/hospital' },
+      { title: 'Organ', href: '/organ' },
+      { title: 'User', href: '/user' },
+      { title: 'Patient', href: '/patient' },
+      { title: 'Address', href: '/address' },
+
       { title: 'Attachments', href: '/attachments' },
     ],
   },

@@ -1,0 +1,257 @@
+export const metadata = {
+  title: 'Admin Hospital',
+  description: 'Nesta página, você encontrará detalhes sobre os endpoints admin de hospital , incluindo criação, consulta, atualização e validação.',
+}
+
+# Admin Hospital  
+
+Os hospital  são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre cada hospital registrado no sistema. Nesta página, exploraremos os diferentes endpoints relacionados aos hospital  admin que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar hospital .
+
+## O modelo de admin hospital  
+
+O modelo de hospital  admin contém todas as informações sobre os hospital  cadastrados no sistema. Essas informações incluem o nome do hospital, telefone, email, CNPJ, status e endereço.
+
+### Propriedades
+
+| Nome              | Tipo       | Descrição                                      |
+|-------------------|------------|-----------------------------------------------|
+| **name**          | string     | Nome do hospital.                             |
+| **phone**         | string     | Telefone de contato do hospital.              |
+| **email**         | string     | Email do hospital.                            |
+| **companyDocument** | string   | CNPJ do hospital.                             |
+| **status**        | boolean    | Indica se o hospital está ativo.              |
+| **address**       | object     | Informações de endereço associadas ao hospital.|
+
+---
+
+## GET hospital  {{ tag: 'GET', label: '/hospitals' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar a lista de hospital  cadastrados no sistema. Os resultados são paginados para facilitar a navegação.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "Santa casa",
+          "phone": "1637115612",
+          "email": "santacasa@gmail.com",
+          "companyDocument": "04827502000141",
+          "status": true,
+          "address": {
+            "zipCode": "13639-516",
+            "street": "Largo Walter Pacheco, 2",
+            "neighbourhood": "corrupti",
+            "state": "RR",
+            "city": "Vila Sophie",
+            "houseNumber": "255",
+            "complement": null
+          }
+        }
+      ],
+      "links": {
+        "first": "http://localhost/api/manager/hospitals?page=1",
+        "last": "http://localhost/api/manager/hospitals?page=1",
+        "prev": null,
+        "next": null
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://localhost/api/manager/hospitals",
+        "per_page": 10,
+        "to": 5,
+        "total": 5
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Detalhar Hospital {{ tag: 'GET', label: '/hospitals/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um hospital específico com base em seu identificador único.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "Santa casa 2 editado",
+        "phone": "163333335",
+        "email": "fr.hospital@gmail.com",
+        "companyDocument": "61609536000101",
+        "status": true,
+        "address": {
+          "zipCode": "11634-722",
+          "street": "Avenida Thalita Ferraz, 12",
+          "neighbourhood": "nobis",
+          "state": "RO",
+          "city": "Aragão do Norte",
+          "houseNumber": "267",
+          "complement": "qui"
+        }
+      }
+    }
+    ```
+
+    ### Resposta de Erro (Error Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Hospital não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## POST Criar Hospital {{ tag: 'POST', label: '/hospitals' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite criar um novo hospital no sistema. É necessário fornecer os atributos obrigatórios, como nome, telefone, email, CNPJ e endereço.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "name": "Santa casa 6",
+      "phone": "1637115440",
+      "email": "santacasa6@gmail.com",
+      "company_document": "15.224.151/0001-09",
+      "address_id": "9da65f8f-e788-4eb6-af71-7c75d56c63cb"
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "Santa casa 6",
+        "phone": "1637115440",
+        "email": "santacasa6@gmail.com",
+        "companyDocument": "15224151000109",
+        "status": false,
+        "address": {
+          "zipCode": "37009-168",
+          "street": "Travessa Malu Lovato, 8561",
+          "neighbourhood": "est",
+          "state": "PI",
+          "city": "São Danielle",
+          "houseNumber": "358",
+          "complement": "sed"
+        }
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Este campo é obrigatório (and 3 more errors)",
+      "errors": {
+        "name": [
+          "Este campo é obrigatório"
+        ],
+        "phone": [
+          "Este campo é obrigatório"
+        ],
+        "email": [
+          "Este campo é obrigatório"
+        ],
+        "company_document": [
+          "Documento já utilizado"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## PATCH Atualizar Hospital {{ tag: 'PATCH', label: '/hospitals/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atualizar informações de um hospital existente no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "address_id": "9da65f8f-e788-4eb6-af71-7c75d56c63cb",
+      "phone": "163333335",
+      "status": false
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "Santa casa 6",
+        "phone": "163333335",
+        "email": "santacasa6@gmail.com",
+        "companyDocument": "15224151000109",
+        "status": false,
+        "address": {
+          "zipCode": "37009-168",
+          "street": "Travessa Malu Lovato, 8561",
+          "neighbourhood": "est",
+          "state": "PI",
+          "city": "São Danielle",
+          "houseNumber": "358",
+          "complement": "sed"
+        }
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Valor informado inválido ou inexistente (and 3 more errors)",
+      "errors": {
+        "address_id": [
+          "Valor informado inválido ou inexistente"
+        ],
+        "phone": [
+          "Este campo deve ser um texto"
+        ],
+        "company_document": [
+          "Este campo deve ser um texto",
+          "Este campo deve conter exatamente 14 caracteres"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>

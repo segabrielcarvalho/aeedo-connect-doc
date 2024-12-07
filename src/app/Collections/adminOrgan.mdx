@@ -76,6 +76,39 @@ O modelo de admin organ contém todas as informações sobre os organ cadastrado
 
 ---
 
+## GET Detalhar Órgão {{ tag: 'GET', label: '/organs/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um órgão específico com base em seu identificador único.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "Coração",
+        "organType": "circulatório",
+        "slug": null
+      }
+    }
+    ```
+
+    ### Resposta de Erro (Error Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Órgão não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## POST Criar Órgão {{ tag: 'POST', label: '/organs' }}
 
 <Row>
@@ -170,35 +203,3 @@ O modelo de admin organ contém todas as informações sobre os organ cadastrado
   </Col>
 </Row>
 
----
-
-## GET Detalhar Órgão {{ tag: 'GET', label: '/organs/:id' }}
-
-<Row>
-  <Col>
-
-    Este endpoint permite consultar os detalhes de um órgão específico com base em seu identificador único.
-
-    ### Resposta Bem-sucedida (Successful Response)
-
-    ```json
-    {
-      "data": {
-        "name": "Coração",
-        "organType": "circulatório",
-        "slug": null
-      }
-    }
-    ```
-
-    ### Resposta de Erro (Error Response)
-
-    ```json
-    {
-      "success": false,
-      "message": "Órgão não encontrado"
-    }
-    ```
-
-  </Col>
-</Row>
