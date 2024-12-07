@@ -1,0 +1,204 @@
+export const metadata = {
+  title: 'Admin Organ',
+  description: 'Nesta página, você encontrará detalhes sobre os endpoints de administração de organ, incluindo criação, consulta, atualização e validação.',
+}
+
+# Admin Organ
+
+Os organ são uma parte essencial do sistema administrativo — eles contêm informações detalhadas sobre cada órgão armazenado no sistema. Nesta página, exploraremos os diferentes endpoints relacionados aos admin organ que você pode usar para gerenciá-los programaticamente. Veremos como consultar, criar, atualizar e validar organ.
+
+## O modelo de admin organ
+
+O modelo de admin organ contém todas as informações sobre os organ cadastrados no sistema. Essas informações incluem o nome do órgão, seu tipo (por exemplo, digestivo, respiratório, etc.), e um identificador único.
+
+### Propriedades
+
+| Nome            | Tipo       | Descrição                                      |
+|-----------------|------------|-----------------------------------------------|
+| **name**        | string     | Nome do órgão.                                |
+| **organType**   | string     | Tipo de órgão (digestivo, respiratório, etc.).|
+| **slug**        | string     | Identificador único opcional do órgão.        |
+
+---
+
+## GET Organ {{ tag: 'GET', label: '/organs' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar a lista de organ cadastrados no sistema. Os resultados são paginados para facilitar a navegação.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "Cabelos",
+          "organType": "tegumentar",
+          "slug": null
+        },
+        {
+          "name": "Coração",
+          "organType": "circulatório",
+          "slug": null
+        },
+        {
+          "name": "Pulmões",
+          "organType": "respiratório",
+          "slug": null
+        }
+      ],
+      "links": {
+        "first": "http://localhost/api/manager/organs?page=1",
+        "last": "http://localhost/api/manager/organs?page=2",
+        "prev": null,
+        "next": "http://localhost/api/manager/organs?page=2"
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 2,
+        "path": "http://localhost/api/manager/organs",
+        "per_page": 10,
+        "to": 10,
+        "total": 11
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## POST Criar Órgão {{ tag: 'POST', label: '/organs' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite criar um novo órgão no sistema. É necessário fornecer os atributos obrigatórios, como nome e tipo de órgão.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "name": "orgão de teste",
+      "organ_type": "digestivo",
+      "slug": ""
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "orgão de teste",
+        "organType": "digestivo",
+        "slug": null
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Nome já existente (and 1 more error)",
+      "errors": {
+        "name": [
+          "Nome já existente"
+        ],
+        "organ_type": [
+          "Tipo de órgão inválido para cadastro"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## PATCH Atualizar Órgão {{ tag: 'PATCH', label: '/organs/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atualizar informações de um órgão existente no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "name": "novo nome"
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "novo nome",
+        "organType": "digestivo",
+        "slug": null
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Este campo deve ser um texto (and 1 more error)",
+      "errors": {
+        "name": [
+          "Este campo deve ser um texto",
+          "Este campo deve conter no mínimo 3 caracteres"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Detalhar Órgão {{ tag: 'GET', label: '/organs/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um órgão específico com base em seu identificador único.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "name": "Coração",
+        "organType": "circulatório",
+        "slug": null
+      }
+    }
+    ```
+
+    ### Resposta de Erro (Error Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Órgão não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>
