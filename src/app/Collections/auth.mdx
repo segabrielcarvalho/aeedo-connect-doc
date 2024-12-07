@@ -1,0 +1,146 @@
+export const metadata = {
+  title: 'Auth',
+  description: 'Nesta página, você encontrará detalhes sobre os endpoints de auth, incluindo login, logout e consulta do usuário autenticado.',
+}
+
+# Auth
+
+A auth é uma parte essencial do sistema — ela é o ponto de entrada para usuários acessarem recursos protegidos. Nesta página, exploraremos os diferentes endpoints de auth que você pode usar para gerenciar auth programaticamente. Veremos como autenticar, deslogar e consultar informações sobre o usuário autenticado.
+
+## O modelo de auth
+
+O modelo de auth contém todas as informações necessárias para gerenciar o acesso ao sistema. Ele armazena informações do usuário, como email, senha e tokens de acesso. Esses dados são fundamentais para proteger o sistema e garantir que somente usuários autorizados acessem os recursos.
+
+### Propriedades
+
+| Nome                | Tipo       | Descrição                                                                |
+|---------------------|------------|--------------------------------------------------------------------------|
+| **id**              | string     | Identificador único do usuário.                                          |
+| **email**           | string     | Email utilizado para auth.                                       |
+| **password**        | string     | Senha do usuário.                                                        |
+| **token_type**      | string     | Tipo do token retornado (ex.: Bearer).                                   |
+| **access_token**    | string     | Token utilizado para autenticar requisições subsequentes.               |
+| **sub**             | string     | Identificador único do sujeito autenticado.                              |
+| **name**            | string     | Nome completo do usuário autenticado.                                    |
+| **role**            | string     | Papel (role) do usuário no sistema (ex.: admin, user).                   |
+| **message**         | string     | Mensagem de erro ou sucesso durante a auth.                      |
+
+---
+
+## POST Login {{ tag: 'POST', label: '/auth/login' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite autenticar um usuário no sistema. Um token de acesso é gerado para validar as requisições subsequentes.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "email": "paciente+2@gmail.com",
+      "password": "10203040"
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "success": true,
+      "data": {
+        "token_type": "Bearer",
+        "access_token": "15|EYuHVlOHlUw532JO3n7GmIGjpyMP9wj4AbnWaNWBbfaf2ca9",
+        "sub": "9da47800-cae9-4370-bde4-909b2d64ec94",
+        "name": "paciente 2",
+        "role": "user"
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "success": false,
+      "message": "Credenciais inválidas"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## POST Logout {{ tag: 'POST', label: '/logout' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite deslogar um usuário autenticado no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "success": true,
+      "message": "Usuário deslogado com sucesso",
+      "data": []
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Não autenticado."
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Me {{ tag: 'GET', label: '/me' }}
+
+<Row>
+  <Col>
+
+    Este endpoint retorna os dados do usuário autenticado, incluindo informações básicas e seu papel no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+        "patientId": "9da47800-cde2-477d-b16d-016f6a6f3441",
+        "name": "paciente 2",
+        "email": "paciente+2@gmail.com",
+        "role": "user",
+        "document": null,
+        "birthDate": null,
+        "isActive": true
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Não autenticado."
+    }
+    ```
+
+  </Col>
+</Row>
