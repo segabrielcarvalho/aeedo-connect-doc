@@ -2,64 +2,70 @@
 Requisitos do Sistema - Doação de Órgãos
 ---
 
-## Requisitos do Sistema para o Projeto de Doação de Órgãos
+# Requisitos do Sistema para o Projeto de Doação de Órgãos
 
-Este documento descreve os requisitos necessários para a implementação do sistema de doação de órgãos. O sistema será dividido em duas partes principais: o **backend**, desenvolvido em **Laravel** com **MySQL**, e o **frontend**, que oferecerá uma interface intuitiva e responsiva. A seguir, detalhamos as principais funcionalidades e a estrutura do sistema.
+Este documento detalha os requisitos necessários para a implementação do sistema de doação de órgãos, dividido em duas partes principais: o **backend**, desenvolvido em **Laravel** com **MySQL**, e o **frontend**, que oferecerá uma interface intuitiva e responsiva. A seguir, apresentamos as funcionalidades e a estrutura planejadas para o sistema.
 
-### Contextualização do Projeto
+## Contextualização do Projeto
 
-O Projeto de Extensão de Doação de Órgãos é uma iniciativa de grande relevância social, inicialmente movida pela Professora Mariana Maranhão e abraçada por diversos cursos da UniEVENGÉLICA, incluindo Engenharia de Software. O projeto busca conscientizar a comunidade sobre a importância da doação de órgãos e facilitar o processo de cadastro de doadores.
+O **Projeto de Extensão de Doação de Órgãos** é uma iniciativa de grande relevância social, liderada pela Professora Mariana Maranhão e apoiada por diversos cursos da UniEVANGÉLICA, incluindo Engenharia de Software. O objetivo é conscientizar a comunidade sobre a importância da doação de órgãos e facilitar o cadastro de doadores.
 
-O Brasil possui o maior sistema público de saúde do mundo, o SUS, e é o segundo país que mais realiza transplantes de órgãos. Contudo, está em 26º lugar em doações, proporcionalmente à população. Entre os fatores que contribuem para esse cenário estão mitos sobre a morte, desinformação e problemas logísticos. A legislação brasileira regula a doação de órgãos desde 1997 (Lei 9.434), exigindo confirmação da morte encefálica por dois médicos independentes e autorização da família. Em março de 2024, foi instituída a AEDO, uma declaração eletrônica de vontade que elimina a necessidade de consulta à família, garantindo que a vontade do doador prevaleça.
-#### Objetivos do Projeto
+Apesar do Brasil ter o maior sistema público de saúde do mundo (SUS) e ser o segundo país que mais realiza transplantes, está apenas na 26ª posição em doações proporcionalmente à população. Fatores como desinformação, mitos sobre a morte e problemas logísticos contribuem para este cenário. A Lei 9.434/1997 regula a doação de órgãos, exigindo confirmação de morte encefálica por dois médicos independentes e autorização da família. Em março de 2024, foi criada a **AEDO** (Declaração Eletrônica de Vontade), eliminando a necessidade de consulta à família e garantindo que a vontade do doador prevaleça.
 
-1. Informar e conscientizar sobre a importância da doação de órgãos.
-2. Promover discussões científicas e desmistificar o tema.
-3. Propor soluções para melhorar o sistema, como campanhas educativas e aprimoramento logístico.
-4. Envolver todos os cursos da instituição, explorando como cada área pode contribuir, seja com materiais didáticos, jogos, pesquisas ou campanhas.
+### Objetivos do Projeto
+
+1. **Conscientizar** sobre a importância da doação de órgãos.
+2. **Desmistificar** conceitos errados por meio de discussões científicas.
+3. **Propor soluções** para melhorias no sistema, como campanhas educativas e logísticas.
+4. **Envolver múltiplas áreas** da instituição em contribuições práticas, como materiais didáticos, pesquisas e jogos.
+
+---
+
+## Estrutura do Sistema
 
 ### Backend (Laravel e MySQL)
 
-O backend do sistema será implementado utilizando o framework **Laravel** e o banco de dados **MySQL**. A base de dados será composta por várias tabelas interconectadas para garantir um gerenciamento eficiente de usuários, órgãos, hospitais e suas relações.
+O backend será desenvolvido utilizando **Laravel**, com **MySQL** como banco de dados. A arquitetura será baseada em tabelas interconectadas para um gerenciamento eficiente de informações.
 
-#### Tabelas Necessárias
+#### Estrutura do Banco de Dados
 
-- **Usuários**: Armazenará informações pessoais dos usuários, como nome, email e senha. Além disso, conterá os campos `id_endereco` e `id_perfil`, associando o usuário a um endereço e a um perfil específico (Administrador, Receptor ou Doador).
-- **Perfil**: Definirá o tipo de usuário no sistema. Cada usuário terá um perfil associado que pode ser Administrador, Receptor (aguardando por um órgão) ou Doador (oferecendo um órgão para doação).
-- **Endereços**: Contém dados completos sobre o endereço dos usuários e hospitais, como logradouro, cidade, estado, etc.
-- **Órgãos**: Armazena informações sobre os órgãos disponíveis para doação ou aguardando doação. Cada órgão será relacionado a um doador ou receptor, com informações como tipo do órgão, condições e status.
-- **Relação Usuários-Órgãos**: Fará a ligação entre os usuários e os órgãos, identificando se o usuário é Doador ou Receptor.
-- **Hospitais**: Contém informações sobre os hospitais cadastrados, como nome, localização, especialidades e dados de contato.
-- **Hospitais-Usuários**: Relaciona os usuários aos hospitais, permitindo associar médicos ou outros profissionais a um hospital específico.
+- **Usuários**: Contém nome, email, senha, `id_endereco` e `id_perfil`.
+- **Perfil**: Define os tipos de usuários: Administrador, Receptor ou Doador.
+- **Endereços**: Armazena informações detalhadas, como logradouro, cidade e estado.
+- **Órgãos**: Registra os órgãos disponíveis ou em espera, incluindo tipo, condições e status.
+- **Relação Usuários-Órgãos**: Vincula doadores e receptores aos órgãos.
+- **Hospitais**: Registra informações como nome, localização e dados de contato.
+- **Hospitais-Usuários**: Relaciona médicos e profissionais aos hospitais.
 
 #### Funcionalidades do Backend
 
-- **Autenticação e Autorização**: O sistema utilizará o **Laravel Passport** para autenticação de usuários. Somente usuários autenticados poderão acessar funções sensíveis, como visualizar dados de doadores e receptores. A autorização será baseada no perfil de cada usuário, garantindo que administradores, receptores e doadores tenham permissões adequadas.
-- **Cadastro e Exibição de Dados**: Administradores poderão cadastrar novos usuários, órgãos e hospitais, bem como visualizar e editar dados existentes. Receptores e doadores terão acesso ao seu próprio perfil e aos órgãos relacionados, com informações detalhadas sobre o status de sua doação ou espera.
+1. **Autenticação e Autorização**: Utilização do **Laravel Passport** para autenticação segura, com permissões específicas para administradores, receptores e doadores.
+2. **Gerenciamento de Dados**: Administradores poderão cadastrar, editar e visualizar usuários, órgãos e hospitais.
+3. **Relacionamento de Tabelas**: Estrutura que permite rápida identificação de doações disponíveis e receptores em espera.
 
-#### Relacionamento entre Tabelas
-
-O sistema foi projetado para garantir uma estrutura de dados interconectada. Cada tabela se relaciona com outra para possibilitar a navegação eficiente das informações. Por exemplo, a relação entre **usuários** e **órgãos** permitirá identificar facilmente quais órgãos estão disponíveis para doação e quais receptores estão aguardando por eles.
+---
 
 ### Frontend
 
-A interface do usuário será desenvolvida para proporcionar uma experiência intuitiva e responsiva, com telas adaptadas a diferentes perfis de usuários. O frontend deve ser de fácil navegação e visualização, permitindo que os usuários encontrem rapidamente as informações necessárias.
+O frontend será projetado para proporcionar uma experiência **intuitiva e responsiva**, com funcionalidades adaptadas aos diferentes perfis de usuários.
 
 #### Principais Telas
 
-- **Tela de Login**: Permitir que os usuários se autentiquem no sistema. Apenas usuários registrados e autenticados terão acesso ao sistema, com segurança garantida por autenticação via **Laravel Passport**.
-- **Tela de Cadastro**: Novos usuários poderão se registrar, fornecendo informações como nome, email, endereço e perfil (Doador, Receptor, Administrador).
-- **Dashboard**:
-  - **Administrador**: Acesso completo ao sistema, com a capacidade de visualizar e gerenciar usuários, hospitais e órgãos. Ele poderá cadastrar novos hospitais e órgãos, gerenciar dados e realizar todas as ações administrativas.
-  - **Receptor**: Acesso a um painel dedicado, no qual poderá visualizar os órgãos que está aguardando. Ele também poderá acessar detalhes sobre o status dos órgãos disponíveis para doação.
-  - **Doador**: Ver a lista de órgãos que cadastrou para doação. Ele também terá a possibilidade de atualizar ou remover órgãos doados, caso necessário.
+1. **Login**: Permite autenticação segura via **Laravel Passport**.
+2. **Cadastro**: Facilita o registro de novos usuários, incluindo dados pessoais e perfil.
+3. **Dashboard**:
+   - **Administrador**: Acesso total para gerenciar usuários, hospitais e órgãos.
+   - **Receptor**: Painel com informações sobre órgãos disponíveis e status de espera.
+   - **Doador**: Gerenciamento de órgãos cadastrados para doação.
 
-### Funcionalidades do Sistema
+---
 
-O sistema de doação de órgãos terá as seguintes funcionalidades principais:
+## Funcionalidades Principais
 
-1. **Cadastro e gerenciamento de usuários**, incluindo perfis diferenciados para doadores, receptores e administradores.
-2. **Cadastro e gerenciamento de órgãos**, com informações detalhadas sobre cada órgão disponível ou em espera para doação.
-3. **Relacionamento entre usuários e órgãos**, para garantir que as doações sejam corretamente atribuídas aos receptores e que os doadores possam gerenciar suas doações.
-4. **Cadastro de hospitais**, com a associação de médicos e profissionais aos respectivos hospitais.
-5. **Dashboard para visualização de informações**, oferecendo aos administradores e usuários uma visão clara de dados importantes, como listas de órgãos e usuários.
+1. **Gerenciamento de usuários** com perfis diferenciados para doadores, receptores e administradores.
+2. **Gerenciamento de órgãos**, incluindo status e condições.
+3. **Relacionamento de usuários e órgãos**, para garantir a correspondência adequada entre doações e receptores.
+4. **Cadastro de hospitais** e associação de profissionais.
+5. **Dashboard interativo**, oferecendo acesso rápido a informações importantes.
+
+Este sistema busca, além de oferecer uma solução tecnológica eficiente, contribuir significativamente para o aumento das doações de órgãos e o fortalecimento da conscientização social.
