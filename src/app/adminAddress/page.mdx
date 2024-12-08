@@ -1,0 +1,99 @@
+export const metadata = {
+  title: 'Admin Address',
+  description: 'Nesta página, você encontrará detalhes sobre os endpoints de administração de address, incluindo consulta, paginação e detalhes dos dados.',
+}
+
+# Admin address 
+
+Os address são uma parte essencial do sistema administrativo — eles contêm informações necessárias para localizar usuários, clientes ou recursos no sistema. Nesta página, exploraremos os diferentes endpoints relacionados a admin address  que você pode usar para gerenciá-los programaticamente. Veremos como consultar, listar e detalhar address.
+
+## O modelo de admin address 
+
+O modelo de admin address  contém todas as informações detalhadas sobre os address armazenados no sistema, como CEP, rua, bairro, estado e número da casa. Essas informações são usadas para gestão e localização.
+
+### Propriedades
+
+| Nome                | Tipo       | Descrição                                             |
+|---------------------|------------|-----------------------------------------------------|
+| **zipCode**         | string     | CEP do endereço.                                     |
+| **street**          | string     | Nome da rua ou avenida.                              |
+| **neighbourhood**   | string     | Bairro do endereço.                                  |
+| **state**           | string     | Estado onde o endereço está localizado.             |
+| **city**            | string     | Cidade onde o endereço está localizado.             |
+| **houseNumber**     | string     | Número da casa ou estabelecimento.                  |
+| **complement**      | string     | Complemento do endereço, se aplicável.              |
+
+---
+
+## POST Consultar address {{ tag: 'POST', label: '/addresses' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar a lista de address disponíveis no sistema. Os resultados podem ser paginados para facilitar a navegação.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "zipCode": "26707-747",
+          "street": "R. Olívia, 61619. Bc. 5 Ap. 88",
+          "neighbourhood": "iusto",
+          "state": "AM",
+          "city": "Santa Gustavo",
+          "houseNumber": "231",
+          "complement": null
+        },
+        {
+          "zipCode": "09066-920",
+          "street": "R. Paulina, 81. Bc. 9 Ap. 68",
+          "neighbourhood": "eius",
+          "state": "BA",
+          "city": "Porto Moisés do Leste",
+          "houseNumber": "328",
+          "complement": null
+        },
+        {
+          "zipCode": "48513-446",
+          "street": "Avenida Milena, 9. Apto 627",
+          "neighbourhood": "dolores",
+          "state": "CE",
+          "city": "Caio do Leste",
+          "houseNumber": "84",
+          "complement": "occaecati"
+        }
+      ],
+      "links": {
+        "first": "http://localhost/api/manager/addresses?page=1",
+        "last": "http://localhost/api/manager/addresses?page=3",
+        "prev": null,
+        "next": "http://localhost/api/manager/addresses?page=2"
+      },
+      "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 3,
+        "path": "http://localhost/api/manager/addresses",
+        "per_page": 10,
+        "to": 10,
+        "total": 24
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Requisição inválida."
+    }
+    ```
+
+  </Col>
+</Row>

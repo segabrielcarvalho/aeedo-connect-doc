@@ -1,67 +1,64 @@
 export const metadata = {
-  title: 'Errors',
+  title: 'Erros',
   description:
-    'In this guide, we will talk about what happens when something goes wrong while you work with the API.',
+    'Neste guia, falaremos sobre o que acontece quando algo dá errado enquanto você trabalha com a API.',
 }
 
-# Errors
+# Erros
 
-In this guide, we will talk about what happens when something goes wrong while you work with the API. Mistakes happen, and mostly they will be yours, not ours. Let's look at some status codes and error types you might encounter. {{ className: 'lead' }}
+Neste guia, falaremos sobre o que acontece quando algo dá errado enquanto você trabalha com a API. Erros acontecem, e na maioria das vezes, eles serão seus, não nossos. Vamos analisar alguns códigos de status e tipos de erros que você pode encontrar. {{ className: 'lead' }}
 
-You can tell if your request was successful by checking the status code when receiving an API response. If a response comes back unsuccessful, you can use the error type and error message to figure out what has gone wrong and do some rudimentary debugging (before contacting support).
+Você pode saber se sua solicitação foi bem-sucedida verificando o código de status ao receber uma resposta da API. Se uma resposta não for bem-sucedida, você pode usar o tipo de erro e a mensagem de erro para entender o que deu errado e realizar uma depuração rudimentar (antes de entrar em contato com o suporte).
 
 <Note>
-  Before reaching out to support with an error, please be aware that 99% of all
-  reported errors are, in fact, user errors. Therefore, please carefully check
-  your code before contacting Protocol support.
+  Antes de entrar em contato com o suporte com um erro, esteja ciente de que 99% de todos os erros relatados são, na verdade, erros de usuário. Portanto, verifique cuidadosamente seu código antes de entrar em contato com o suporte do Protocol.
 </Note>
 
 ---
 
-## Status codes
+## Códigos de status
 
-Here is a list of the different categories of status codes returned by the Protocol API. Use these to understand if a request was successful.
+Aqui está uma lista das diferentes categorias de códigos de status retornados pela API do Protocol. Use esses códigos para entender se uma solicitação foi bem-sucedida.
 
 <Properties>
   <Property name="2xx">
-    A 2xx status code indicates a successful response.
+    Um código de status 2xx indica uma resposta bem-sucedida.
   </Property>
   <Property name="4xx">
-    A 4xx status code indicates a client error — this means it's a _you_
-    problem.
+    Um código de status 4xx indica um erro do cliente — isso significa que o problema é _seu_.
   </Property>
   <Property name="5xx">
-    A 5xx status code indicates a server error — you won't be seeing these.
+    Um código de status 5xx indica um erro do servidor — você provavelmente não verá esses.
   </Property>
 </Properties>
 
 ---
 
-## Error types
+## Tipos de erros
 
 <Row>
   <Col>
 
-    Whenever a request is unsuccessful, the Protocol API will return an error response with an error type and message. You can use this information to understand better what has gone wrong and how to fix it. Most of the error messages are pretty helpful and actionable.
+    Sempre que uma solicitação não for bem-sucedida, a API do Protocol retornará uma resposta de erro com um tipo de erro e uma mensagem. Você pode usar essas informações para entender melhor o que deu errado e como corrigir. A maioria das mensagens de erro é bastante útil e prática.
 
-    Here is a list of the two error types supported by the Protocol API — use these to understand what you have done wrong.
+    Aqui está uma lista dos dois tipos de erro suportados pela API do Protocol — use esses tipos para entender o que você fez de errado.
 
     <Properties>
       <Property name="api_error">
-        This means that we made an error, which is highly speculative and unlikely.
+        Isso significa que nós cometemos um erro, o que é altamente especulativo e improvável.
       </Property>
       <Property name="invalid_request">
-        This means that you made an error, which is much more likely.
+        Isso significa que você cometeu um erro, o que é muito mais provável.
       </Property>
     </Properties>
 
   </Col>
   <Col>
 
-    ```bash {{ title: "Error response" }}
+    ```bash {{ title: "Resposta de erro" }}
     {
       "type": "api_error",
-      "message": "No way this is happening!?",
+      "message": "Não acredito que isso está acontecendo!?",
       "documentation_url": "https://protocol.chat/docs/errors/api_error"
     }
     ```

@@ -1,45 +1,45 @@
 export const metadata = {
-  title: 'Pagination',
+  title: 'Paginação',
   description:
-    'In this guide, we will look at how to work with paginated responses when querying the Protocol API',
+    'Neste guia, veremos como trabalhar com respostas paginadas ao consultar a API do Protocol.',
 }
 
-# Pagination
+# Paginação
 
-In this guide, we will look at how to work with paginated responses when querying the Protocol API. By default, all responses limit results to ten. However, you can go as high as 100 by adding a `limit` parameter to your requests. If you are using one of the official Protocol API client libraries, you don't need to worry about pagination, as it's all being taken care of behind the scenes. {{ className: 'lead' }}
+Neste guia, veremos como trabalhar com respostas paginadas ao consultar a API do Protocol. Por padrão, todas as respostas limitam os resultados a dez. No entanto, você pode aumentar até 100 adicionando um parâmetro `limit` às suas solicitações. Se você estiver usando uma das bibliotecas oficiais de cliente da API do Protocol, não precisa se preocupar com a paginação, pois tudo é gerenciado automaticamente. {{ className: 'lead' }}
 
-When an API response returns a list of objects, no matter the amount, pagination is supported. In paginated responses, objects are nested in a `data` attribute and have a `has_more` attribute that indicates whether you have reached the end of the last page. You can use the `starting_after` and `endding_before` query parameters to browse pages.
+Quando uma resposta da API retorna uma lista de objetos, independentemente da quantidade, a paginação é suportada. Nas respostas paginadas, os objetos estão aninhados em um atributo `data` e possuem um atributo `has_more` que indica se você chegou ao final da última página. Você pode usar os parâmetros de consulta `starting_after` e `ending_before` para navegar entre as páginas.
 
-## Example using cursors
+## Exemplo usando cursores
 
 <Row>
   <Col>
 
-    In this example, we request the page that starts after the conversation with id `s4WycXedwhQrEFuM`. As a result, we get a list of three conversations and can tell by the `has_more` attribute that we have reached the end of the resultset.
+    Neste exemplo, solicitamos a página que começa após a conversa com o id `s4WycXedwhQrEFuM`. Como resultado, obtemos uma lista de três conversas e podemos verificar pelo atributo `has_more` que chegamos ao final do conjunto de resultados.
 
     <Properties>
       <Property name="starting_after" type="string">
-        The last ID on the page you're currently on when you want to fetch the next page.
+        O último ID na página em que você está atualmente quando deseja buscar a próxima página.
       </Property>
       <Property name="ending_before" type="string">
-        The first ID on the page you're currently on when you want to fetch the previous page.
+        O primeiro ID na página em que você está atualmente quando deseja buscar a página anterior.
       </Property>
       <Property name="limit" type="integer">
-        Limit the number of items returned.
+        Limita o número de itens retornados.
       </Property>
     </Properties>
 
   </Col>
   <Col>
 
-    ```bash {{ title: 'Manual pagination using cURL' }}
+    ```bash {{ title: 'Paginação manual usando cURL' }}
     curl -G https://api.protocol.chat/v1/conversations \
       -H "Authorization: Bearer {token}" \
       -d starting_after="s4WycXedwhQrEFuM" \
       -d limit=10
     ```
 
-    ```json {{ title: 'Paginated response' }}
+    ```json {{ title: 'Resposta paginada' }}
     {
       "has_more": false,
       "data": [

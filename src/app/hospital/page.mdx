@@ -25,63 +25,6 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
 
 ---
 
-## POST Escolher Hospitais {{ tag: 'POST', label: '/hospitals/choose-hospitals' }}
-
-<Row>
-  <Col>
-
-    Este endpoint permite atribuir ou desconectar hospitais de usuários no sistema.
-
-    ### Corpo da Requisição (Request Body)
-
-    ```json
-    {
-      "hospitals": {
-        "connect": [
-          { "id": "" }
-        ],
-        "disconnect": [
-          { "id": "9da1123b-4c68-4a86-a8f4-b6a3910274e5" }
-        ]
-      }
-    }
-    ```
-
-    ### Resposta Bem-sucedida (Successful Response)
-
-    ```json
-    {
-      "data": {
-        "user": {
-          "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
-          "patientId": null,
-          "name": "paciente 2",
-          "email": "paciente+2@gmail.com",
-          "role": "user",
-          "document": null,
-          "birthDate": null,
-          "isActive": true
-        },
-        "patientType": "donor",
-        "bloodType": "B+",
-        "hospitals": [
-          {
-            "name": "Santa casa 6",
-            "phone": "163333335",
-            "email": "santacasa6@gmail.com",
-            "companyDocument": "15224151000109",
-            "status": false
-          }
-        ]
-      }
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
 ## GET Listar Hospitais {{ tag: 'GET', label: '/hospitals' }}
 
 <Row>
@@ -197,6 +140,63 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
     {
       "success": false,
       "message": "Hospital não encontrado para visualização"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## POST Escolher Hospitais {{ tag: 'POST', label: '/hospitals/choose-hospitals' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atribuir ou desconectar hospitais de usuários no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "hospitals": {
+        "connect": [
+          { "id": "" }
+        ],
+        "disconnect": [
+          { "id": "9da1123b-4c68-4a86-a8f4-b6a3910274e5" }
+        ]
+      }
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "user": {
+          "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+          "patientId": null,
+          "name": "paciente 2",
+          "email": "paciente+2@gmail.com",
+          "role": "user",
+          "document": null,
+          "birthDate": null,
+          "isActive": true
+        },
+        "patientType": "donor",
+        "bloodType": "B+",
+        "hospitals": [
+          {
+            "name": "Santa casa 6",
+            "phone": "163333335",
+            "email": "santacasa6@gmail.com",
+            "companyDocument": "15224151000109",
+            "status": false
+          }
+        ]
+      }
     }
     ```
 

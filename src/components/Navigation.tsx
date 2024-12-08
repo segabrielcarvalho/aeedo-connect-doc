@@ -231,23 +231,14 @@ function NavigationGroup({
 
 export const navigation: Array<NavGroup> = [
   {
-    title: 'Guides',
+    title: 'Requirements',
     links: [
-      { title: 'Introduction', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
+      { title: 'Project_Requirement', href: '/project_Requirement' },
     ],
   },
   {
     title: 'Collections',
     links: [
-      { title: 'Contacts', href: '/contacts' },
-      { title: 'Conversations', href: '/conversations' },
-      { title: 'Messages', href: '/messages' },
-      { title: 'Groups', href: '/groups' },
-
       { title: 'Auth', href: '/auth' },
       { title: 'AdminAddress', href: '/adminAddress' },
       { title: 'AdminOrgan', href: '/adminOrgan' },
@@ -257,8 +248,6 @@ export const navigation: Array<NavGroup> = [
       { title: 'User', href: '/user' },
       { title: 'Patient', href: '/patient' },
       { title: 'Address', href: '/address' },
-
-      { title: 'Attachments', href: '/attachments' },
     ],
   },
 ]
