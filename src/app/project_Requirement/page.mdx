@@ -39,7 +39,7 @@ O backend será desenvolvido utilizando **Laravel**, com **MySQL** como banco de
 
 #### Funcionalidades do Backend
 
-1. **Autenticação e Autorização**: Utilização do **Laravel Passport** para autenticação segura, com permissões específicas para administradores, receptores e doadores.
+1. **Autenticação e Autorização**: Utilização do **SANCTUM** para autenticação segura, com permissões específicas para administradores, receptores e doadores.
 2. **Gerenciamento de Dados**: Administradores poderão cadastrar, editar e visualizar usuários, órgãos e hospitais.
 3. **Relacionamento de Tabelas**: Estrutura que permite rápida identificação de doações disponíveis e receptores em espera.
 
@@ -57,6 +57,10 @@ O frontend será projetado para proporcionar uma experiência **intuitiva e resp
    - **Administrador**: Acesso total para gerenciar usuários, hospitais e órgãos.
    - **Receptor**: Painel com informações sobre órgãos disponíveis e status de espera.
    - **Doador**: Gerenciamento de órgãos cadastrados para doação.
+4. **Listagens**:
+   - **Orgons**: listagem de orgaos
+   - **Hospitais**: listagem de hospitais doadores e recepitores daquele hospital" e tambem "organs a serem doados e orgaons a serem recebidos"
+   - **Pacientes**: listagem de pacientes de determiando hospital
 
 ---
 
@@ -66,6 +70,6 @@ O frontend será projetado para proporcionar uma experiência **intuitiva e resp
 2. **Gerenciamento de órgãos**, incluindo status e condições.
 3. **Relacionamento de usuários e órgãos**, para garantir a correspondência adequada entre doações e receptores.
 4. **Cadastro de hospitais** e associação de profissionais.
-5. **Dashboard interativo**, oferecendo acesso rápido a informações importantes.
+{/* 5. **Dashboard interativo**, oferecendo acesso rápido a informações importantes. */}
 
 Este sistema busca, além de oferecer uma solução tecnológica eficiente, contribuir significativamente para o aumento das doações de órgãos e o fortalecimento da conscientização social.
