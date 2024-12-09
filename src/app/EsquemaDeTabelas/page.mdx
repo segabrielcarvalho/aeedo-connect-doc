@@ -1,3 +1,152 @@
 ---
-squema do banco
+Schema do Banco de Dados - Sistema de Doação de Órgãos
 ---
+
+# Documentação do Schema do Banco de Dados
+
+Esta documentação apresenta uma análise detalhada do schema do banco de dados para o sistema de doação de órgãos. O objetivo é fornecer uma visão clara e compreensível da estrutura, relacionamentos e funcionalidade das tabelas para qualquer tipo de usuário, seja técnico ou leigo.
+
+---
+
+## Estrutura Geral do Banco de Dados
+
+O sistema foi projetado para atender às necessidades de gerenciamento de informações de doadores, receptores, hospitais e órgãos, garantindo uma organização eficiente e segura. Ele utiliza um modelo relacional que permite a interconexão entre diferentes tabelas, suportando operações robustas.
+
+---
+
+## Descrição das Tabelas e Relacionamentos
+
+### 1. **Tabela: `addresses`**
+   - **Descrição:** Armazena informações de endereço relacionadas a pacientes e hospitais.
+   - **Campos:**
+     - `id` (integer): Identificador único do endereço.
+     - `zip_code` (varchar): Código postal.
+     - `street` (varchar): Nome da rua.
+     - `neighbourhood` (varchar): Bairro.
+     - `state` (char): Estado.
+     - `city` (varchar): Cidade.
+     - `house_number` (varchar): Número da residência.
+     - `complement` (varchar): Complemento (opcional).
+     - `created_at` (timestamp): Data de criação do registro.
+     - `updated_at` (timestamp): Data de última atualização.
+   - **Relacionamento:** 
+     - Conectada às tabelas `hospitals` e `patient` via a chave estrangeira `address_id`.
+
+---
+
+### 2. **Tabela: `hospitals`**
+   - **Descrição:** Armazena informações sobre os hospitais cadastrados no sistema.
+   - **Campos:**
+     - `id` (integer): Identificador único do hospital.
+     - `name` (varchar): Nome do hospital.
+     - `phone` (varchar): Telefone de contato.
+     - `email` (varchar): Email institucional.
+     - `company_document` (varchar): Documento jurídico do hospital (CNPJ).
+     - `status` (boolean): Define se o hospital está ativo.
+     - `address_id` (integer): Chave estrangeira para `addresses`.
+     - `created_at` (timestamp): Data de criação do registro.
+     - `updated_at` (timestamp): Data de última atualização.
+   - **Relacionamento:**
+     - Relaciona-se com `addresses`, `hospital_patient` e `users`.
+
+---
+
+### 3. **Tabela: `users`**
+   - **Descrição:** Gerencia os dados dos usuários do sistema (administradores, doadores e receptores).
+   - **Campos:**
+     - `id` (integer): Identificador único do usuário.
+     - `name` (varchar): Nome completo.
+     - `email` (varchar): Endereço de email.
+     - `document` (varchar): Documento de identificação (CPF).
+     - `birth_date` (date): Data de nascimento.
+     - `role` (enum): Papel do usuário no sistema (Admin, Doador, Receptor).
+     - `password` (varchar): Senha criptografada.
+     - `isActive` (boolean): Status de atividade.
+     - `created_at` (timestamp): Data de criação do registro.
+     - `updated_at` (timestamp): Data de última atualização.
+   - **Relacionamento:**
+     - Conecta-se à tabela `patient` pela chave estrangeira `user_id`.
+
+---
+
+### 4. **Tabela: `patient`**
+   - **Descrição:** Contém informações específicas de pacientes.
+   - **Campos:**
+     - `id` (integer): Identificador único do paciente.
+     - `patient_type` (enum): Tipo de paciente (Doador ou Receptor).
+     - `blood_type` (enum): Tipo sanguíneo.
+     - `address_id` (integer): Chave estrangeira para `addresses`.
+     - `user_id` (integer): Chave estrangeira para `users`.
+     - `created_at` (timestamp): Data de criação do registro.
+     - `updated_at` (timestamp): Data de última atualização.
+   - **Relacionamento:**
+     - Relaciona-se com `addresses`, `users`, `hospital_patient` e `organ_patient`.
+
+---
+
+### 5. **Tabela: `hospital_patient`**
+   - **Descrição:** Representa a relação entre pacientes e hospitais.
+   - **Campos:**
+     - `id` (integer): Identificador único da relação.
+     - `hospital_id` (integer): Chave estrangeira para `hospitals`.
+     - `patient_id` (integer): Chave estrangeira para `patient`.
+     - `created_at` (timestamp): Data de criação do registro.
+   - **Relacionamento:**
+     - Liga as tabelas `hospitals` e `patient`.
+
+---
+
+### 6. **Tabela: `organ_patient`**
+   - **Descrição:** Conecta pacientes aos órgãos disponíveis para doação.
+   - **Campos:**
+     - `id` (integer): Identificador único da relação.
+     - `patient_id` (integer): Chave estrangeira para `patient`.
+     - `organ_id` (integer): Chave estrangeira para `organs`.
+     - `created_at` (timestamp): Data de criação do registro.
+   - **Relacionamento:**
+     - Liga as tabelas `patient` e `organs`.
+
+---
+
+### 7. **Tabela: `organs`**
+   - **Descrição:** Armazena informações sobre os órgãos disponíveis para doação.
+   - **Campos:**
+     - `id` (integer): Identificador único do órgão.
+     - `name` (varchar): Nome do órgão.
+     - `organ_type` (enum): Tipo do órgão.
+     - `slug` (varchar): Identificador amigável do órgão.
+     - `created_at` (timestamp): Data de criação do registro.
+     - `updated_at` (timestamp): Data de última atualização.
+   - **Relacionamento:**
+     - Conectada à tabela `organ_patient`.
+
+---
+
+## Resumo dos Relacionamentos
+
+- **`addresses`:** Relaciona-se com `hospitals` e `patient`.
+- **`hospitals`:** Conecta-se a `addresses`, `users` e `hospital_patient`.
+- **`users`:** Relaciona-se com `patient`.
+- **`patient`:** Liga-se a `addresses`, `users`, `hospital_patient` e `organ_patient`.
+- **`hospital_patient`:** Conecta `hospitals` com `patient`.
+- **`organ_patient`:** Liga `patient` com `organs`.
+- **`organs`:** Relaciona-se com `organ_patient`.
+
+---
+
+## Análise Profunda do Schema
+
+1. **Modularidade e Manutenibilidade:**
+   - O schema segue princípios de modularidade, separando informações em tabelas específicas, como `addresses`, `users`, e `organs`.
+   - Essa organização facilita futuras alterações ou adições sem impactar diretamente outras tabelas.
+
+2. **Relacionamentos Claros:**
+   - As relações entre as tabelas são bem definidas com o uso de chaves estrangeiras, garantindo integridade referencial.
+   - A ligação entre `patient` e `organs` através de `organ_patient` ilustra como o modelo gerencia complexidades de múltiplos relacionamentos.
+
+3. **Escalabilidade:**
+   - O uso de enums para campos como `role` e `organ_type` permite a extensão de funcionalidades sem grandes modificações na estrutura.
+   - A estrutura temporal com `created_at` e `updated_at` em todas as tabelas facilita auditorias e consultas temporais.
+
+4. **Desempenho:**
+   - A separação de responsabilidades em tabelas específicas evita redundância de dados, melhorando a eficiência nas consultas.
