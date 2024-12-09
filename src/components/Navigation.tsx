@@ -231,9 +231,11 @@ function NavigationGroup({
 
 export const navigation: Array<NavGroup> = [
   {
-    title: 'Requirementos',
+    title: 'Projeto',
     links: [
-      { title: 'Projeto', href: '/project_Requirement' },
+      { title: 'Requirementos', href: '/project_requirement' },
+      { title: 'Planejamento do Back', href: '/planejamento_do_back' },
+      { title: 'Esquema de tabelas', href: '/EsquemaDeTabelas' },
     ],
   },
   {

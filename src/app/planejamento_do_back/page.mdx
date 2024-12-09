@@ -1,0 +1,121 @@
+---
+Planejamento do Backend - Projeto de Doação de Órgãos
+---
+
+# Planejamento do Backend para o Sistema de Doação de Órgãos
+
+Este documento apresenta, em detalhes, o planejamento do backend para o sistema de doação de órgãos. A proposta visa oferecer uma estrutura robusta e eficiente, utilizando **Laravel** e **MySQL**, para atender a todos os requisitos funcionais e não funcionais. O objetivo é garantir que qualquer pessoa, independentemente de sua formação técnica, compreenda o planejamento e a implementação do backend.
+
+---
+
+## Requisitos do Sistema
+
+O desenvolvimento do backend será baseado nos seguintes requisitos:
+
+### Arquitetura do Banco de Dados (2 horas)
+
+O banco de dados será projetado para suportar relacionamentos eficientes entre as tabelas e armazenar informações detalhadas. A estrutura principal inclui:
+
+- **Usuários**: Armazena informações como nome, email, senha, tipo de perfil (Administrador, Doador, Receptor), e referência ao endereço.
+- **Perfis**: Define os tipos de usuários com permissões específicas.
+- **Endereços**: Contém informações como CEP, logradouro, cidade, estado, número da casa e complemento.
+- **Órgãos**: Armazena os órgãos disponíveis, incluindo tipo, status e condições.
+- **Hospitais**: Registra dados dos hospitais, como nome, localização e telefone.
+- **Relacionamentos**:
+  - Usuários-Órgãos: Associa doadores e receptores aos órgãos.
+  - Usuários-Hospitais: Relaciona pacientes aos hospitais.
+
+### Funcionalidades de Autenticação (2 horas)
+
+A autenticação será implementada com base nos seguintes endpoints:
+
+- **Login**: Permite o acesso ao sistema mediante validação de credenciais.
+- **Logout**: Encerra a sessão do usuário.
+- **"Me"**: Retorna os dados do usuário autenticado.
+
+### CRUDs para Administração (10 horas)
+
+#### Gerenciamento de Usuários (4 horas)
+
+- Cadastro de novos administradores, realizado exclusivamente por outro administrador.
+- Listagem de usuários, separados em doadores e receptores.
+- Validação de dados e permissões, com controle de acesso por tipo de perfil.
+
+#### Gerenciamento de Órgãos (4 horas)
+
+- **SEED** inicial para popular o banco de dados com tipos padrão de órgãos.
+- Funcionalidades de cadastro, edição, visualização e listagem de órgãos.
+- Validação de dados e permissões por perfil administrativo.
+
+#### Gerenciamento de Hospitais (4 horas)
+
+- Cadastro, edição, visualização e listagem de hospitais.
+- Validação de dados e permissões, garantindo que apenas administradores possam gerenciar.
+
+### CRUDs Gerais (8 horas)
+
+#### Cadastro de Usuários (6 horas)
+
+- Processo de cadastro em múltiplas etapas no frontend, com comunicação eficiente via API.
+- Informações cadastradas:
+  - Dados do paciente.
+  - Endereço.
+  - Órgãos doados ou aguardados.
+  - Hospital de preferência.
+- Validação de dados e regras específicas para cada etapa.
+
+#### Informações por Perfil (2 horas)
+
+- **Doadores**:
+  - Exibição de tipo de usuário e órgãos cadastrados.
+  - Validação de acesso por perfil.
+- **Receptores**:
+  - Exibição de tipo de usuário e órgãos em espera.
+  - Validação de acesso por perfil.
+
+---
+
+## Estrutura Detalhada do Planejamento
+
+### Etapas de Desenvolvimento
+
+1. **Configuração Inicial**:
+   - Instalação do Laravel e configuração do ambiente de desenvolvimento.
+   - Criação do banco de dados e configuração do MySQL.
+2. **Implementação de Autenticação**:
+   - Configuração do Sanctum para autenticação segura.
+   - Desenvolvimento dos endpoints de login, logout e "me".
+3. **CRUDs Administrativos**:
+   - Desenvolvimento das funcionalidades de gerenciamento de usuários, órgãos e hospitais.
+   - Validação de dados e permissões com middleware de controle de acesso.
+4. **CRUDs Gerais**:
+   - Implementação do cadastro de doadores e receptores.
+   - Integração de validação de dados em múltiplas etapas.
+5. **Testes e Validações**:
+   - Testes unitários e integração para garantir o correto funcionamento das funcionalidades.
+   - Testes de segurança para proteger os dados sensíveis.
+
+---
+
+## Objetivos do Backend
+
+1. **Eficiência**: Estrutura de banco de dados bem projetada para suportar consultas rápidas e escalabilidade.
+2. **Segurança**: Autenticação robusta e validação rigorosa de dados.
+3. **Facilidade de Uso**: APIs claras e bem documentadas para integração com o frontend.
+4. **Flexibilidade**: Sistema modular que permite futuras expansões, como inclusão de novos tipos de perfis ou órgãos.
+
+---
+
+## Documentação Técnica
+
+Toda a implementação será acompanhada de documentação detalhada, incluindo:
+
+- **Descrição dos Endpoints**: URLs, métodos, parâmetros e respostas esperadas.
+- **Modelos de Dados**: Estrutura do banco de dados, relacionamentos e exemplos de registros.
+- **Fluxos de Operação**: Sequência de chamadas e interações entre frontend e backend.
+
+---
+
+## Considerações Finais
+
+O backend do sistema de doação de órgãos foi planejado para atender a todos os requisitos funcionais e não funcionais, garantindo uma base sólida para o desenvolvimento do projeto. A combinação de Laravel e MySQL oferece confiabilidade e desempenho, enquanto a estrutura modular facilita futuras expansões e melhorias.

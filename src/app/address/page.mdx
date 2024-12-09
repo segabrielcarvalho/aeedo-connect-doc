@@ -27,6 +27,47 @@ O modelo de address contém todas as informações necessárias para identificar
 
 ---
 
+## GET Consultar Endereço por ID {{ tag: 'GET', label: '/addresses/:id' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite consultar os detalhes de um endereço específico.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+        "data": {
+            "zipCode": "41535-204",
+            "street": "Rua Luiz, 19. 41º Andar",
+            "neighbourhood": "et",
+            "state": "PB",
+            "city": "Daniele do Norte",
+            "houseNumber": "427",
+            "complement": null
+        }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+        "success": false,
+        "message": "Endereço não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## POST Criar Endereço {{ tag: 'POST', label: '/addresses' }}
 
 <Row>
@@ -59,13 +100,13 @@ O modelo de address contém todas as informações necessárias para identificar
             "neighbourhood": "Centro",
             "state": "RS",
             "city": "Alegrete",
-            "houseNumber": "666",
+            "houseNumber": "123",
             "complement": null
         }
     }
     ```
 
-    ### Resposta de Validação (Validation Response)
+    ### Resposta de Erro (Error Response)
 
     ```json
     {
@@ -112,47 +153,6 @@ O modelo de address contém todas as informações necessárias para identificar
             "state": "RS",
             "city": "Alegrete",
             "houseNumber": "154",
-            "complement": null
-        }
-    }
-    ```
-
-    ### Resposta de Validação (Validation Response)
-
-    ```json
-    {
-        "success": false,
-        "message": "Endereço não encontrado"
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## GET Consultar Endereço por ID {{ tag: 'GET', label: '/addresses/:id' }}
-
-<Row>
-  <Col>
-
-    Este endpoint permite consultar os detalhes de um endereço específico.
-
-    ### Corpo da Requisição (Request Body)
-
-    Nenhum corpo necessário.
-
-    ### Resposta Bem-sucedida (Successful Response)
-
-    ```json
-    {
-        "data": {
-            "zipCode": "41535-204",
-            "street": "Rua Luiz, 19. 41º Andar",
-            "neighbourhood": "et",
-            "state": "PB",
-            "city": "Daniele do Norte",
-            "houseNumber": "427",
             "complement": null
         }
     }

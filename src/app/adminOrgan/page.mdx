@@ -83,6 +83,10 @@ O modelo de admin organ contém todas as informações sobre os organ cadastrado
 
     Este endpoint permite consultar os detalhes de um órgão específico com base em seu identificador único.
 
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
     ### Resposta Bem-sucedida (Successful Response)
 
     ```json
@@ -197,6 +201,15 @@ O modelo de admin organ contém todas as informações sobre os organ cadastrado
           "Este campo deve conter no mínimo 3 caracteres"
         ]
       }
+    }
+    ```
+
+    ### Resposta de Erro (Error Response)
+
+    ```json
+    {
+        "success": false,
+        "message": "Orgão não encontrado"
     }
     ```
 

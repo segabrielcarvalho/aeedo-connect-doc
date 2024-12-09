@@ -27,6 +27,47 @@ O modelo de auth contém todas as informações necessárias para gerenciar o ac
 
 ---
 
+## GET Me {{ tag: 'GET', label: '/me' }}
+
+<Row>
+  <Col>
+
+    Este endpoint retorna os dados do usuário autenticado, incluindo informações básicas e seu papel no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo é necessário para esta requisição.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": {
+        "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
+        "patientId": "9da47800-cde2-477d-b16d-016f6a6f3441",
+        "name": "paciente",
+        "email": "paciente@gmail.com",
+        "role": "user",
+        "document": null,
+        "birthDate": null,
+        "isActive": true
+      }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Não autenticado."
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## POST Login {{ tag: 'POST', label: '/auth/login' }}
 
 <Row>
@@ -95,47 +136,6 @@ O modelo de auth contém todas as informações necessárias para gerenciar o ac
       "success": true,
       "message": "Usuário deslogado com sucesso",
       "data": []
-    }
-    ```
-
-    ### Resposta de Validação (Validation Response)
-
-    ```json
-    {
-      "message": "Não autenticado."
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## GET Me {{ tag: 'GET', label: '/me' }}
-
-<Row>
-  <Col>
-
-    Este endpoint retorna os dados do usuário autenticado, incluindo informações básicas e seu papel no sistema.
-
-    ### Corpo da Requisição (Request Body)
-
-    Nenhum corpo é necessário para esta requisição.
-
-    ### Resposta Bem-sucedida (Successful Response)
-
-    ```json
-    {
-      "data": {
-        "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
-        "patientId": "9da47800-cde2-477d-b16d-016f6a6f3441",
-        "name": "paciente 2",
-        "email": "paciente+2@gmail.com",
-        "role": "user",
-        "document": null,
-        "birthDate": null,
-        "isActive": true
-      }
     }
     ```
 

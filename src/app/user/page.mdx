@@ -24,6 +24,107 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
 
 ---
 
+## GET Listar Usuários {{ tag: 'GET', label: '/users/?type=donor' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite listar todos os usuários com base em um tipo específico de paciente.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "paciente",
+          "email": "paciente@gmail.com",
+          "role": "user",
+          "organs": [
+            {
+              "name": "novo orgao",
+              "organType": "locomotor"
+            }
+          ]
+        },
+        {
+          "name": "paciente",
+          "email": "paciente@gmail.com",
+          "role": "user",
+          "organs": [
+            {
+              "name": "óvulos",
+              "organType": "reprodutor"
+            },
+            {
+              "name": "células-tronco",
+              "organType": "nervoso"
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## GET Obter Usuário Específico {{ tag: 'GET', label: '/users/9da201fb-68ee-48f1-ab53-2d913c6fc64b' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite buscar informações detalhadas de um usuário específico no sistema, utilizando o ID do usuário.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+        "data": {
+            "name": "A paciente",
+            "email": "paciente@gmail.com",
+            "phone": null,
+            "document": null,
+            "role": "user",
+            "birthDate": null,
+            "patient": {
+                "patientType": "recipient",
+                "bloodType": "A+"
+            },
+            "organs": [
+                {
+                    "name": "coração",
+                    "organType": "locomotor"
+                }
+            ]
+        }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+        "success": false,
+        "message": "Usuário não encontrado"
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## POST Criar Usuário {{ tag: 'POST', label: '/users' }}
 
 <Row>
@@ -35,8 +136,8 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
 
     ```json
     {
-      "name": "paciente 6",
-      "email": "paciente+6@gmail.com",
+      "name": "paciente",
+      "email": "paciente@gmail.com",
       "role": "user",
       "password": "12345678",
       "patient_type": "donor",
@@ -53,8 +154,8 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
     ```json
     {
       "data": {
-        "name": "paciente 3",
-        "email": "paciente+3@gmail.com",
+        "name": "paciente",
+        "email": "paciente@gmail.com",
         "phone": null,
         "document": null,
         "role": "user",
@@ -108,8 +209,8 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
 
     ```json
     {
-        "name": "paciente 3",
-        "email": "paciente+3@gmail.com",
+        "name": "paciente",
+        "email": "paciente@gmail.com",
         "patient_type": "recipients",
         "blood_type": "O+"
     }
@@ -120,8 +221,8 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
     ```json
     {
       "data": {
-        "name": "paciente 3 editado",
-        "email": "paciente+3@gmail.com",
+        "name": "paciente",
+        "email": "paciente@gmail.com",
         "phone": null,
         "document": null,
         "role": "user",
@@ -158,54 +259,12 @@ O modelo de user contém todas as informações sobre os usuários cadastrados n
     }
     ```
 
-  </Col>
-</Row>
-
----
-
-## GET Listar Usuários {{ tag: 'GET', label: '/users/?type=donor' }}
-
-<Row>
-  <Col>
-
-    Este endpoint permite listar todos os usuários com base em um tipo específico de paciente.
-
-    ### Corpo da Requisição (Request Body)
-
-    Nenhum corpo necessário.
-
-    ### Resposta Bem-sucedida (Successful Response)
+    ### Resposta de Erro (Error Response)
 
     ```json
     {
-      "data": [
-        {
-          "name": "paciente 2",
-          "email": "paciente+2@gmail.com",
-          "role": "user",
-          "organs": [
-            {
-              "name": "novo orgao",
-              "organType": "locomotor"
-            }
-          ]
-        },
-        {
-          "name": "paciente 3 editado",
-          "email": "paciente+3@gmail.com",
-          "role": "user",
-          "organs": [
-            {
-              "name": "óvulos",
-              "organType": "reprodutor"
-            },
-            {
-              "name": "células-tronco",
-              "organType": "nervoso"
-            }
-          ]
-        }
-      ]
+        "success": false,
+        "message": "Usuário não encontrado"
     }
     ```
 

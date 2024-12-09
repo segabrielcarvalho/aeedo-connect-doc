@@ -98,9 +98,9 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
     {
       "data": {
         "hospital": {
-          "name": "Santa casa 6",
+          "name": "Santa casa",
           "phone": "163333335",
-          "email": "santacasa6@gmail.com",
+          "email": "santacasa@gmail.com",
           "companyDocument": "15224151000109",
           "status": false,
           "address": {
@@ -116,8 +116,8 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
         "donors": [
           {
             "id": "9da47800-cde2-477d-b16d-016f6a6f3441",
-            "name": "paciente 2",
-            "email": "paciente+2@gmail.com",
+            "name": "paciente",
+            "email": "paciente@gmail.com",
             "isActive": null,
             "patientType": "donor",
             "bloodType": "B+",
@@ -178,8 +178,8 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
         "user": {
           "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
           "patientId": null,
-          "name": "paciente 2",
-          "email": "paciente+2@gmail.com",
+          "name": "paciente",
+          "email": "paciente@gmail.com",
           "role": "user",
           "document": null,
           "birthDate": null,
@@ -189,14 +189,27 @@ O modelo de hospitais contém todas as informações sobre os hospitais cadastra
         "bloodType": "B+",
         "hospitals": [
           {
-            "name": "Santa casa 6",
+            "name": "Santa casa",
             "phone": "163333335",
-            "email": "santacasa6@gmail.com",
+            "email": "santacasa@gmail.com",
             "companyDocument": "15224151000109",
             "status": false
           }
         ]
       }
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+        "message": "Este campo é obrigatório",
+        "errors": {
+            "hospitals": [
+                "Este campo é obrigatório"
+            ]
+        }
     }
     ```
 

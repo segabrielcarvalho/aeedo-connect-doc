@@ -21,6 +21,35 @@ O modelo de órgãos contém todas as informações sobre os órgãos cadastrado
 
 ---
 
+## GET Listar Órgãos de Pacientes {{ tag: 'GET', label: '/organs/patient-organs/' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite listar todos os órgãos atribuídos a um paciente no sistema.
+
+    ### Corpo da Requisição (Request Body)
+
+    Nenhum corpo necessário.
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "data": [
+        {
+          "name": "Coração",
+          "organType": "locomotor"
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## POST Escolher Órgãos {{ tag: 'POST', label: '/organs/choose-organs' }}
 
 <Row>
@@ -51,8 +80,8 @@ O modelo de órgãos contém todas as informações sobre os órgãos cadastrado
         "user": {
           "id": "9da47800-cae9-4370-bde4-909b2d64ec94",
           "patientId": null,
-          "name": "paciente 2",
-          "email": "paciente+2@gmail.com",
+          "name": "paciente",
+          "email": "paciente@gmail.com",
           "role": "user",
           "document": null,
           "birthDate": null,
@@ -80,35 +109,6 @@ O modelo de órgãos contém todas as informações sobre os órgãos cadastrado
           "Este campo é obrigatório"
         ]
       }
-    }
-    ```
-
-  </Col>
-</Row>
-
----
-
-## GET Listar Órgãos de Pacientes {{ tag: 'GET', label: '/organs/patient-organs/' }}
-
-<Row>
-  <Col>
-
-    Este endpoint permite listar todos os órgãos atribuídos a um paciente no sistema.
-
-    ### Corpo da Requisição (Request Body)
-
-    Nenhum corpo necessário.
-
-    ### Resposta Bem-sucedida (Successful Response)
-
-    ```json
-    {
-      "data": [
-        {
-          "name": "novo orgao",
-          "organType": "locomotor"
-        }
-      ]
     }
     ```
 

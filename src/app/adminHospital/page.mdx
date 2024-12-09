@@ -92,7 +92,7 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
     ```json
     {
       "data": {
-        "name": "Santa casa 2 editado",
+        "name": "Santa casa",
         "phone": "163333335",
         "email": "fr.hospital@gmail.com",
         "companyDocument": "61609536000101",
@@ -104,13 +104,13 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
           "state": "RO",
           "city": "Aragão do Norte",
           "houseNumber": "267",
-          "complement": "qui"
+          "complement": "complemento"
         }
       }
     }
     ```
 
-    ### Resposta de Erro (Error Response)
+    ### Resposta de Validação (Validation Response)
 
     ```json
     {
@@ -135,9 +135,9 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
 
     ```json
     {
-      "name": "Santa casa 6",
+      "name": "Santa casa",
       "phone": "1637115440",
-      "email": "santacasa6@gmail.com",
+      "email": "santacasa@gmail.com",
       "company_document": "15.224.151/0001-09",
       "address_id": "9da65f8f-e788-4eb6-af71-7c75d56c63cb"
     }
@@ -148,9 +148,9 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
     ```json
     {
       "data": {
-        "name": "Santa casa 6",
+        "name": "Santa casa",
         "phone": "1637115440",
-        "email": "santacasa6@gmail.com",
+        "email": "santacasa@gmail.com",
         "companyDocument": "15224151000109",
         "status": false,
         "address": {
@@ -193,6 +193,60 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
 
 ---
 
+## POST Atribuir Hospital a Paciente {{ tag: 'POST', label: '/hospitals/assign-patient' }}
+
+<Row>
+  <Col>
+
+    Este endpoint permite atribuir um hospital a um paciente específico no sistema. É necessário fornecer o ID do paciente e a lista de hospitais a serem conectados ou desconectados.
+
+    ### Corpo da Requisição (Request Body)
+
+    ```json
+    {
+      "patient_id": "9da47800-cde2-477d-b16d-016f6a6f3441",
+      "hospitals": {
+        "connect": [
+          {"id": "9da85d82-4965-4108-81d3-56a2552bd029"}
+        ],
+        "disconnect": [
+          {"id": ""}
+        ]
+      }
+    }
+    ```
+
+    ### Resposta Bem-sucedida (Successful Response)
+
+    ```json
+    {
+      "success": true,
+      "message": "Hospitais atribuídos/removidos com sucesso.",
+      "data": []
+    }
+    ```
+
+    ### Resposta de Validação (Validation Response)
+
+    ```json
+    {
+      "message": "Valor inválido ou inexistente (and 1 more error)",
+      "errors": {
+        "patient_id": [
+          "Valor inválido ou inexistente"
+        ],
+        "hospitals": [
+          "Este campo é obrigatório"
+        ]
+      }
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
 ## PATCH Atualizar Hospital {{ tag: 'PATCH', label: '/hospitals/:id' }}
 
 <Row>
@@ -215,9 +269,9 @@ O modelo de hospital  admin contém todas as informações sobre os hospital  ca
     ```json
     {
       "data": {
-        "name": "Santa casa 6",
+        "name": "Santa casa",
         "phone": "163333335",
-        "email": "santacasa6@gmail.com",
+        "email": "santacasa@gmail.com",
         "companyDocument": "15224151000109",
         "status": false,
         "address": {
