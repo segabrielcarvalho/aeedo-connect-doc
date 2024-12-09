@@ -20,41 +20,75 @@ A criação da **AEDO** em 2024 foi um marco importante, permitindo que o desejo
 
 ---
 
+## Estrutura do Sistema
+
+### Backend
+
+O backend é o núcleo funcional deste projeto, desenvolvido com **Laravel** e integrado ao banco de dados **MySQL**. Ele é responsável por toda a lógica de negócios, incluindo a autenticação, autorização e o gerenciamento de dados. O sistema foi projetado com base em princípios **S.O.L.I.D** para garantir modularidade, manutenibilidade e escalabilidade. Entre suas funcionalidades principais, destacam-se:
+
+- **Cadastro e Gerenciamento de Usuários:** Suporte para perfis de Administrador, Doador e Receptor.
+- **Gerenciamento de Hospitais e Órgãos:** Registro detalhado e acompanhamento das condições de órgãos disponíveis e em espera.
+- **Relacionamento de Dados:** Integração entre usuários, órgãos e hospitais, permitindo um fluxo contínuo de informações.
+
+### Landing Page
+
+A **Landing Page**, acessível em [http://localhost:3001/](http://localhost:3001/), foi criada para fornecer uma interface inicial simples e convidativa. Seu objetivo é captar a atenção de novos visitantes, apresentando o projeto e incentivando a adesão de doadores. Nela, o usuário pode:
+
+- Obter informações sobre o projeto.
+- Explorar as funcionalidades do sistema.
+- Ser redirecionado para as interfaces específicas do sistema.
+
+A Landing Page é essencial para engajar novos participantes e conectar a comunidade ao propósito do projeto.
+
+### Frontend (Admin e Sistema)
+
+O sistema operacional, disponível em [http://localhost:3003/](http://localhost:3003/), oferece dashboards intuitivos e interativos para diferentes tipos de usuários:
+
+- **Administrador:** Permite o cadastro, edição e monitoramento de usuários, órgãos e hospitais.
+- **Doador:** Exibe informações sobre os órgãos cadastrados para doação.
+- **Receptor:** Lista os órgãos em espera, vinculados ao perfil do usuário.
+
+Esse frontend foi desenvolvido para garantir uma experiência responsiva e acessível, sendo capaz de atender às necessidades de todos os perfis de usuários.
+
+### Banco de Dados
+
+O **MySQL** foi escolhido para garantir o armazenamento seguro e estruturado dos dados. Ele organiza as informações em tabelas interligadas, como:
+
+- **Usuários:** Dados pessoais, endereço e perfil.
+- **Órgãos:** Registro de órgãos disponíveis e condições associadas.
+- **Hospitais:** Cadastro detalhado de instituições de saúde.
+- **Relação Usuários-Órgãos:** Conexão entre doadores, receptores e órgãos.
+- **Hospitais-Usuários:** Vinculação de usuários aos hospitais.
+
+Essa estrutura robusta garante um desempenho eficiente, mesmo em cenários de grande volume de dados.
+
+---
+
 ## Objetivos do Projeto
 
-1. **Informar e Conscientizar:** Aumentar o conhecimento sobre o processo de doação de órgãos e a importância desse ato.
+1. **Informar e Conscientizar:** Aumentar o conhecimento sobre a importância da doação de órgãos.
 2. **Engajar a Comunidade:** Criar campanhas educativas que envolvam estudantes e a sociedade.
 3. **Fortalecer o Sistema:** Propor melhorias na logística e nos processos de cadastro de doadores.
-4. **Ampliar o Impacto Social:** Mostrar como cada área do conhecimento pode contribuir para o aumento das doações.
+4. **Ampliar o Impacto Social:** Mostrar como a tecnologia pode ser utilizada para salvar vidas.
 
 ---
 
 ## Envolvimento Acadêmico
 
-Os estudantes do 6º período de Engenharia de Software terão a oportunidade de aplicar técnicas aprendidas na disciplina de **Desenvolvimento de API Back-End**, criando um sistema que combina:
+Os alunos do 6º período de Engenharia de Software estão aplicando na prática os conhecimentos adquiridos em sala de aula para desenvolver um sistema que combina:
 
-- **Tecnologia e Impacto Social:** Usar o conhecimento técnico para salvar vidas.
-- **Prática e Teoria:** Desenvolver APIs robustas e funcionais.
-- **Engajamento Interdisciplinar:** Trabalhar em equipe para superar desafios reais.
-
----
-
-## Cronograma e Atividades
-
-O projeto será desenvolvido até o **Dia Nacional da Doação de Órgãos (27 de setembro)**, com ações planejadas até **19 de outubro**. As atividades incluem:
-
-- Criação de APIs e interfaces para cadastro e gerenciamento de dados.
-- Desenvolvimento de dashboards para diferentes perfis de usuários (administradores, doadores e receptores).
-- Promoção de campanhas educativas.
+- **Tecnologia e Impacto Social:** Uso de APIs e dashboards para gerenciar dados críticos.
+- **Prática e Teoria:** Desenvolvimento com foco em segurança e eficiência.
+- **Engajamento Multidisciplinar:** Colaboração entre cursos e áreas de estudo.
 
 ---
 
 ## Impacto Esperado
 
-Este projeto não é apenas um exercício acadêmico; é uma oportunidade de usar a tecnologia para transformar vidas. Com um sistema bem projetado, espera-se:
+Com este projeto, esperamos:
 
-- **Aumento no número de doações:** Facilitar o processo para doadores e receptores.
-- **Conscientização social:** Reduzir mitos e tabus sobre a doação de órgãos.
-- **Melhoria no gerenciamento:** Criar um sistema eficiente e confiável para auxiliar hospitais e administradores.
+- **Aumentar o número de doadores cadastrados:** Simplificando o processo de adesão.
+- **Conscientizar a sociedade:** Reduzindo mitos e incentivando doações.
+- **Fortalecer a infraestrutura tecnológica:** Melhorando a gestão e o uso de dados no sistema de doação.
 
-Juntos, tecnologia e engajamento social podem fazer a diferença, salvando vidas e transformando o futuro da doação de órgãos no Brasil.
+Juntos, comunidade acadêmica e tecnologia podem transformar vidas, garantindo que mais pessoas recebam os órgãos de que precisam para sobreviver.
