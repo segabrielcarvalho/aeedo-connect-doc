@@ -234,7 +234,7 @@ export const navigation: Array<NavGroup> = [
     title: 'Projeto',
     links: [
       { title: 'Introduction', href: '/' },
-      { title: 'Requirementos', href: '/project_Requirement' },
+      { title: 'Requirementos', href: '/project_requirement' },
       { title: 'Planejamento do Back', href: '/planejamento_do_back' },
       { title: 'Esquema de tabelas', href: '/EsquemaDeTabelas' },
     ],
