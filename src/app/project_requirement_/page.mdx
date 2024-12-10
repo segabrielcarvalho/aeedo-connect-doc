@@ -1,0 +1,77 @@
+---
+Requisitos do Projeto - Doação de Órgãos
+---
+
+# Requisitos do Sistema para o Projeto de Doação de Órgãos
+
+O **Projeto de Extensão de Doação de Órgãos** é uma iniciativa social de grande relevância, voltada para conscientizar a comunidade sobre a importância da doação de órgãos e incentivar a adesão de novos doadores. O objetivo é usar a tecnologia como uma ferramenta de impacto social, simplificando o processo de cadastro de doadores e garantindo eficiência no gerenciamento das informações.
+
+A seguir, apresentamos os requisitos técnicos e funcionais do projeto, com foco na construção de um sistema robusto e acessível para todos os envolvidos.
+
+---
+
+## Contextualização
+
+O Brasil é o segundo país que mais realiza transplantes de órgãos no mundo, mas está em **26º lugar em doações proporcionais à população**. Este dado reflete desafios como:
+
+- **Mitos e tabus sobre a morte:** Muitas famílias recusam a doação por desinformação.
+- **Desinformação:** Falta de conhecimento sobre o processo e a importância da doação.
+- **Problemas logísticos:** Transportar órgãos como coração e pulmão, com janelas de viabilidade de apenas 4 horas, é um grande desafio.
+
+Com a criação da **AEDO (Autorização Eletrônica de Doação de Órgãos)** em 2024, é possível registrar a vontade do doador de forma eletrônica, eliminando a necessidade de consulta à família. Este projeto busca promover o uso dessa ferramenta, ao mesmo tempo em que propõe uma solução prática para aumentar as doações.
+
+---
+
+## Requisitos do Sistema
+
+### Backend
+
+O backend será desenvolvido em **Laravel** com **MySQL** como banco de dados. Ele será responsável por gerenciar as informações de forma eficiente e segura, atendendo aos seguintes requisitos:
+
+1. **Estrutura do Banco de Dados:**
+   - **Usuários:** Cadastro de dados pessoais, incluindo endereço e perfil.
+   - **Perfil:** Classificação dos usuários como Administrador, Doador ou Receptor.
+   - **Endereços:** Detalhes completos, como rua, cidade e estado.
+   - **Órgãos:** Registro dos órgãos disponíveis ou em espera.
+   - **Relação Usuários-Órgãos:** Associa doadores e receptores aos órgãos.
+   - **Hospitais:** Informações como nome, localização e contato.
+   - **Hospitais-Usuários:** Conexão entre usuários e hospitais.
+
+2. **Funcionalidades Principais:**
+   - **Autenticação e Autorização:** Uso de **Laravel Sanctum** para controle seguro de acessos.
+   - **CRUD de Usuários:** Cadastro, edição e exclusão realizados por administradores.
+   - **Gerenciamento de Órgãos e Hospitais:** Admin pode adicionar, editar e listar informações.
+   - **Relacionamento de Dados:** Conexões claras entre tabelas para vincular doadores e receptores.
+
+3. **Critérios de Avaliação Backend:**
+   - Código bem estruturado e comentado.
+   - Implementação de princípios **S.O.L.I.D**.
+   - Uso correto de relacionamentos no banco de dados.
+
+---
+
+### Frontend
+
+O frontend será projetado para proporcionar uma experiência de uso fluida, intuitiva e responsiva, adaptada às necessidades de cada perfil de usuário.
+
+1. **Telas Principais:**
+   - **Login:** Autenticação segura para todos os usuários.
+   - **Cadastro:** Registro detalhado, incluindo dados pessoais e perfil.
+   - **Dashboard:**
+     - **Administrador:** Gerenciamento de usuários, hospitais e órgãos.
+     - **Receptor:** Visualização de órgãos em espera.
+     - **Doador:** Informações sobre os órgãos cadastrados para doação.
+
+2. **Critérios de Avaliação Frontend:**
+   - Design responsivo e acessível.
+   - Exibição clara das informações no dashboard.
+
+---
+
+## Objetivos do Projeto
+
+1. **Promover a conscientização:** Ampliar o conhecimento sobre doação de órgãos.
+2. **Facilitar o cadastro de doadores:** Tornar o processo simples e acessível.
+3. **Aumentar o número de doações:** Reduzir filas de espera por meio de uma solução tecnológica eficiente.
+4. **Engajar a sociedade:** Mostrar o impacto positivo da doação de órgãos de forma prática e tangível.
+
